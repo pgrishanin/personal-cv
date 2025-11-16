@@ -1,0 +1,12 @@
+{
+    "translation": {
+        "common": {
+            "OK": "Да"
+        },
+        "header": {
+            "home": "Домой",
+            "experience": "Опыт",
+            "contacts": "Контакты"
+        }
+    }
+}

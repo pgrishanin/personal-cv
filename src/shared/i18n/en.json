@@ -1,0 +1,12 @@
+{
+    "translation": {
+        "common": {
+            "OK": "Ok"
+        },
+        "header": {
+            "home": "Home",
+            "experience": "Experience",
+            "contacts": "Contacts"
+        }
+    }
+}

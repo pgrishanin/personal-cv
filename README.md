@@ -1,1 +1,1 @@
-# personal-cv
+CV Playground app
