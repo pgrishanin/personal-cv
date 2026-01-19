@@ -2,25 +2,18 @@ import { Box, BoxProps, Text, TextProps } from '@chakra-ui/react';
 import { motion, stagger, useAnimate, useInView } from 'motion/react';
 import { useEffect } from 'react';
 
+const START_DELAY = 3000;
+
 export const TypewriterEffect = ({
-    words,
+    text,
     textProps,
     cursorProps,
 }: {
-    words: {
-        text: string;
-        className?: string;
-    }[];
+    text: string;
     textProps?: TextProps;
     cursorProps?: BoxProps;
 }) => {
-    // split text inside of words into array of characters
-    const wordsArray = words.map(word => {
-        return {
-            ...word,
-            text: word.text.split(''),
-        };
-    });
+    const charsArray = text.split('');
 
     const [scope, animate] = useAnimate();
     const isInView = useInView(scope);
@@ -41,7 +34,7 @@ export const TypewriterEffect = ({
                         ease: 'easeInOut',
                     },
                 );
-            }, 3000);
+            }, START_DELAY);
         }
     }, [isInView]);
 
@@ -49,37 +42,39 @@ export const TypewriterEffect = ({
         return (
             <Box asChild display="inline-flex">
                 <motion.div ref={scope}>
-                    {wordsArray.map((word, idx) => {
-                        return (
-                            <Box key={`word-${idx}`} display="inline-block">
-                                {word.text.map((char, index) => (
+                    <Box display="inline-block">
+                        {charsArray.map((char, index) => {
+                            if (char === ' ') {
+                                return (
                                     <Text
                                         asChild
-                                        color="gray.50"
                                         opacity={0}
                                         visibility={'hidden'}
                                         display={'none'}
-                                        key={`char-${index}`}
-                                        {...textProps}>
+                                        wordSpacing="1rem"
+                                        key={`char-${index}`}>
                                         <motion.span initial={{}}>
-                                            {char}
+                                            {'\u00A0'}
                                         </motion.span>
                                     </Text>
-                                ))}
-
+                                );
+                            }
+                            return (
                                 <Text
                                     asChild
+                                    color="gray.50"
                                     opacity={0}
                                     visibility={'hidden'}
                                     display={'none'}
-                                    wordSpacing="1rem">
+                                    key={`char-${index}`}
+                                    {...textProps}>
                                     <motion.span initial={{}}>
-                                        {'\u00A0'}
+                                        {char}
                                     </motion.span>
                                 </Text>
-                            </Box>
-                        );
-                    })}
+                            );
+                        })}
+                    </Box>
                 </motion.div>
             </Box>
         );

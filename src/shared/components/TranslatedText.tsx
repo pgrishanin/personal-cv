@@ -32,8 +32,6 @@ function generateGibberishPreservingSpaces(original: string): string {
     return result;
 }
 
-let runsCounter = 0;
-
 export const EncryptedText: React.FC<EncryptedTextProps> = ({
     text,
     revealDelayMs = 50,
@@ -109,13 +107,6 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
 
     if (!text) return null;
 
-    // Skip initial text animation
-    if (!runsCounter) {
-        runsCounter++;
-        return <Text>{text}</Text>;
-    }
-    runsCounter++;
-
     return (
         <motion.span ref={ref} aria-label={text} role="text">
             {text.split('').map((char, index) => {
@@ -134,6 +125,17 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
 };
 
 export const TranslatedText: FC<{ text: string }> = ({ text }) => {
+    const runsCounterRef = useRef(0);
     const { t } = useTranslation();
+
+    console.log(runsCounterRef.current);
+
+    // Skip initial text animation (in dev mode should skip twice)
+    if (!runsCounterRef.current) {
+        runsCounterRef.current++;
+        return <Text>{t(text)}</Text>;
+    }
+    runsCounterRef.current++;
+
     return <EncryptedText text={t(text)}></EncryptedText>;
 };

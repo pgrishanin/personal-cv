@@ -37,11 +37,7 @@ export const HomePage = memo(() => {
                         h="100vh"
                         justifyContent={'center'}>
                         <TypewriterEffect
-                            words={[
-                                { text: 'Hi' },
-                                { text: `I'm` },
-                                { text: 'Pavel' },
-                            ]}
+                            text="Nothing is impossible"
                             textProps={{
                                 fontSize: '3rem',
                                 wordSpacing: '1.5rem',
