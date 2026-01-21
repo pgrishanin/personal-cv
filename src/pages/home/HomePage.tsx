@@ -37,7 +37,7 @@ export const HomePage = memo(() => {
                         h="100vh"
                         justifyContent={'center'}>
                         <TypewriterEffect
-                            text="Nothing is impossible"
+                            text="Everything is possible"
                             textProps={{
                                 fontSize: '3rem',
                                 wordSpacing: '1.5rem',
