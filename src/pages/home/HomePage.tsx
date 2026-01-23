@@ -6,9 +6,11 @@ import { PageLoadingOverlay } from '@widgets/page-loader';
 import { cancelFrame, frame } from 'framer-motion';
 import { ReactLenis, type LenisRef } from 'lenis/react';
 import { memo, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const HomePage = memo(() => {
     const lenisRef = useRef<LenisRef>(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const update = (data: { timestamp: number }) => {
@@ -37,7 +39,7 @@ export const HomePage = memo(() => {
                         h="100vh"
                         justifyContent={'center'}>
                         <TypewriterEffect
-                            text="Everything is possible"
+                            text={t('everythingIsPossible')}
                             textProps={{
                                 fontSize: '3rem',
                                 wordSpacing: '1.5rem',
@@ -52,8 +54,6 @@ export const HomePage = memo(() => {
                     <Box h="100vh"></Box>
                     <Box h="100vh"></Box>
                     <Box h="100vh"></Box>
-
-                    {/* </Box> */}
                 </Box>
             </PageLoadingOverlay>
         </>
