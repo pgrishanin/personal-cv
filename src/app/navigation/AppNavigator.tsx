@@ -5,7 +5,7 @@ const basename = import.meta.env.VITE_BASENAME;
 
 export const AppNavigator = () => {
     return (
-        <BrowserRouter basename="">
+        <BrowserRouter basename={basename}>
             <Routes>
                 <Route path="/" element={<HomePage />} />
             </Routes>
