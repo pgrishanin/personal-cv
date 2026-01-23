@@ -1,5 +1,6 @@
 import { Stars, useTexture } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
+import { useSourceUrlResolver } from '@shared/hooks';
 import { useScroll } from 'motion/react';
 import { useRef } from 'react';
 import { Mesh, Vector3 } from 'three';
@@ -36,10 +37,11 @@ export const MoonScene = () => {
 };
 
 const Moon = ({ radius = 1.5, rotationSpeed = 0.02 }) => {
+    const { resolveUrl } = useSourceUrlResolver();
     const mesh = useRef<Mesh>(null);
-    const colorMap = useTexture('/moonmap4k.jpg');
-    const bumpMap = useTexture('/moonbump4k.jpg');
-    const normalMap = useTexture('/normal.jpg');
+    const colorMap = useTexture('moonmap4k.jpg');
+    const bumpMap = useTexture(resolveUrl('moonbump4k.jpg'));
+    const normalMap = useTexture(resolveUrl('normal.jpg'));
 
     useFrame((_, delta) => {
         if (mesh.current) {
