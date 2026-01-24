@@ -20,7 +20,7 @@ export const AppHeader: React.FC = () => {
                 alignItems="center"
                 justifyContent="space-between">
                 <Link borderRadius={10} overflow="hidden" href="/">
-                    <Image w={10} src="/star.svg"></Image>
+                    <Image w={10} src="star.svg"></Image>
                 </Link>
                 {/* Desktop Navigation */}
                 <HStack
