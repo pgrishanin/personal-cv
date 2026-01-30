@@ -38,8 +38,8 @@ export const MoonScene = () => {
 const Moon = ({ radius = 1.5, rotationSpeed = 0.02 }) => {
     const mesh = useRef<Mesh>(null);
     const colorMap = useTexture('moonmap4k.jpg');
-    const bumpMap = useTexture('moonbump4k.jpg');
-    const normalMap = useTexture('normal.jpg');
+    const bumpMap = useTexture('moonbump4k-compressed.jpg');
+    const normalMap = useTexture('normal-compressed.jpg');
 
     useFrame((_, delta) => {
         if (mesh.current) {

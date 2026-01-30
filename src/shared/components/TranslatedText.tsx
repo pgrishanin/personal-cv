@@ -128,8 +128,6 @@ export const TranslatedText: FC<{ text: string }> = ({ text }) => {
     const runsCounterRef = useRef(0);
     const { t } = useTranslation();
 
-    console.log(runsCounterRef.current);
-
     // Skip initial text animation (in dev mode should skip twice)
     if (!runsCounterRef.current) {
         runsCounterRef.current++;
