@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { TypewriterEffect } from '@shared/components';
 import { PageBackground } from '@widgets/background';
 import { AppHeader } from '@widgets/header';
+import { FloatingLogo } from '@widgets/logo';
 import { PageLoadingOverlay } from '@widgets/page-loader';
 import { cancelFrame, frame } from 'framer-motion';
 import { ReactLenis, type LenisRef } from 'lenis/react';
@@ -30,6 +31,7 @@ export const HomePage = memo(() => {
             <PageBackground />
             <PageLoadingOverlay>
                 <AppHeader />
+                <FloatingLogo />
 
                 <Box w="full" minH="100vh" position="relative">
                     <Box

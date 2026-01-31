@@ -1,4 +1,4 @@
-import { Box, HStack, Image, Link } from '@chakra-ui/react';
+import { Box, HStack, Link } from '@chakra-ui/react';
 import { LanguageSwitcher } from '@features/language-switcher';
 import { TranslatedText } from '@shared/components';
 
@@ -19,9 +19,6 @@ export const AppHeader: React.FC = () => {
                 display="flex"
                 alignItems="center"
                 justifyContent="space-between">
-                <Link borderRadius={10} overflow="hidden" href="/">
-                    <Image w={10} src="star.svg"></Image>
-                </Link>
                 {/* Desktop Navigation */}
                 <HStack
                     gap={4}
