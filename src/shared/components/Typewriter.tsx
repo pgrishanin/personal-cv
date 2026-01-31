@@ -1,6 +1,6 @@
 import { Box, BoxProps, Text, TextProps } from '@chakra-ui/react';
 import { motion, stagger, useAnimate, useInView } from 'motion/react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const START_DELAY = 3000;
 
@@ -17,26 +17,42 @@ export const TypewriterEffect = ({
 
     const [scope, animate] = useAnimate();
     const isInView = useInView(scope);
+
+    const resetCharsVisibility = useCallback(() => {
+        animate('span', {
+            opacity: 0,
+            width: 0,
+            visibility: 'hidden',
+            display: 'none',
+        });
+    }, []);
+
+    const startCharsAnimation = useCallback(() => {
+        setTimeout(() => {
+            animate(
+                'span',
+                {
+                    display: 'inline-block',
+                    opacity: 1,
+                    width: 'fit-content',
+                    visibility: 'visible',
+                },
+                {
+                    duration: 0,
+                    delay: stagger(0.3),
+                    ease: 'easeInOut',
+                },
+            );
+        }, START_DELAY);
+    }, []);
+
     useEffect(() => {
+        resetCharsVisibility();
+
         if (isInView) {
-            setTimeout(() => {
-                animate(
-                    'span',
-                    {
-                        display: 'inline-block',
-                        opacity: 1,
-                        width: 'fit-content',
-                        visibility: 'visible',
-                    },
-                    {
-                        duration: 0,
-                        delay: stagger(0.3),
-                        ease: 'easeInOut',
-                    },
-                );
-            }, START_DELAY);
+            startCharsAnimation();
         }
-    }, [isInView]);
+    }, [isInView, text]);
 
     const renderWords = () => {
         return (
