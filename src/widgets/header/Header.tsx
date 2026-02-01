@@ -19,6 +19,15 @@ export const AppHeader: React.FC = () => {
                 display="flex"
                 alignItems="center"
                 justifyContent="space-between">
+                <Link borderRadius={10} overflow="hidden" href="/">
+                    <Box
+                        borderRadius={20}
+                        borderWidth={1}
+                        borderColor="gray.50"
+                        h="2rem"
+                        w="2rem"></Box>
+                </Link>
+
                 {/* Desktop Navigation */}
                 <HStack
                     gap={4}
