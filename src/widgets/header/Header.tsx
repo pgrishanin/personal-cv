@@ -1,19 +1,45 @@
 import { Box, HStack, Link } from '@chakra-ui/react';
 import { LanguageSwitcher } from '@features/language-switcher';
 import { TranslatedText } from '@shared/components';
+import { motion, useScroll } from 'motion/react';
+import { useEffect, useState } from 'react';
 
 export const AppHeader: React.FC = () => {
+    const { scrollYProgress } = useScroll();
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        return scrollYProgress.on('change', () => {
+            setIsScrolled(scrollYProgress.get() > 0);
+        });
+    }, [scrollYProgress]);
+
     return (
         <Box
-            as="header"
             position="fixed"
-            top={4}
+            top={0}
             w="full"
             overflowY="hidden"
             color="gray.50"
-            zIndex={1}>
+            zIndex={100}>
+            {/* Separate background colored box */}
             <Box
-                h="3rem"
+                asChild
+                w="full"
+                h="full"
+                position="absolute"
+                background="gray.950"
+                maskImage="linear-gradient(0deg,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 30%)"
+                zIndex={-1}>
+                <motion.div
+                    animate={{
+                        opacity: isScrolled ? 0.9 : 0,
+                        transition: { duration: 1.5 },
+                    }}></motion.div>
+            </Box>
+
+            <Box
+                h="5rem"
                 mx="2rem"
                 px={1.5}
                 display="flex"

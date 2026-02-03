@@ -37,8 +37,10 @@ export const FloatingLogo = () => {
             w="1.5rem"
             pos="fixed"
             top="28px"
-            left="42px">
+            left="42px"
+            zIndex={1000}>
             <motion.div style={{ y }}>
+                {/* Tail box */}
                 <Box
                     asChild
                     position="relative"
